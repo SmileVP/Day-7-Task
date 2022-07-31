@@ -3,27 +3,27 @@ request.open("GET","https://raw.githubusercontent.com/rvsp/restcountries-json-da
 request.send();
 request.onload=function(){
 var result=JSON.parse(request.response);
-//to get the countries from the asia region using filter 
+//a)to get the countries from the asia region using filter 
 
 var res=result.filter((ele)=>ele.region==="Asia").map((ele)=>ele.name);
 console.log(res);
 
-//to get the countries with population less than 2lakh using filter
+//b)to get the countries with population less than 2lakh using filter
 var pop=result.filter((ele)=>ele.population<200000).map((ele)=>ele.name);
 console.log(pop);
 
-//to get the name,capital, flag using forEach
+//c)to get the name,capital, flag using forEach
 result.forEach(ele=>{
     console.log(ele.name);
     console.log(ele.capital);
     console.log(ele.flag);
 });
 
-//to get the total population of countries using reduce function
+//d)to get the total population of countries using reduce function
 var reg=result.map((ele)=>ele.population).reduce((acc,ele)=>acc+ele);
 console.log(reg);
 
-//to get the country which uses US Dollar as currency
+//e)to get the country which uses US Dollar as currency
 var res=result.filter((ele)=>{for (var i=0;i<ele.currencies.length;i++){
     if(ele.currencies[i].code==="USD"){
          return true;
